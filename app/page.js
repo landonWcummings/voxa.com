@@ -27,6 +27,20 @@ const IntroPage = () => {
       {/* Footer Section */}
       <footer style={styles.footer}>
         <p style={styles.footerText}>© 2025 Voxa. All rights reserved.</p>
+        
+        {/* YouTube Video */}
+        <div style={styles.videoContainer}>
+          <iframe 
+            width="681" 
+            height="383" 
+            src="https://www.youtube.com/embed/WUspEXAHGok" 
+            title="BETTER AD" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerPolicy="strict-origin-when-cross-origin" 
+            allowFullScreen
+          ></iframe>
+        </div>
       </footer>
     </div>
   );
@@ -35,7 +49,7 @@ const IntroPage = () => {
 const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
-    color: '#333',
+    color: '#000',
     margin: 0,
     padding: 0,
     textAlign: 'center',
@@ -51,7 +65,7 @@ const styles = {
   logo: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
-    color: '#007bff',
+    color: '#000',
   },
   nav: {
     display: 'flex',
@@ -59,27 +73,31 @@ const styles = {
   },
   navLink: {
     textDecoration: 'none',
-    color: '#007bff',
+    color: '#000',
     fontSize: '1rem',
   },
   heroSection: {
     padding: '4rem 2rem',
-    backgroundColor: '#e9ecef',
+    backgroundImage: 'url("/logo.png")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
     minHeight: '80vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    color: '#000',
   },
   title: {
     fontSize: '3rem',
     margin: '0 0 1rem',
-    color: '#333',
+    color: '#000',
   },
   subtitle: {
     fontSize: '1.25rem',
     margin: '0 0 2rem',
-    color: '#555',
+    color: '#000',
   },
   ctaButton: {
     padding: '0.75rem 1.5rem',
@@ -91,9 +109,6 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s',
   },
-  ctaButtonHover: {
-    backgroundColor: '#0056b3',
-  },
   footer: {
     padding: '1rem 0',
     backgroundColor: '#f8f9fa',
@@ -101,8 +116,11 @@ const styles = {
   },
   footerText: {
     fontSize: '0.875rem',
-    color: '#666',
+    color: '#000',
     margin: 0,
+  },
+  videoContainer: {
+    marginTop: '1rem',
   },
 };
 
