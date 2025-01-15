@@ -1,4 +1,6 @@
 "use client"; // Enable interactivity and hooks like useState/useEffect
+import Image from 'next/image';
+import './globals.css'; // Make sure your global styles include the font-face declarations
 
 export default function Page() {
   return (
@@ -6,33 +8,22 @@ export default function Page() {
       {/* Hero Section */}
       <section style={heroStyles}>
         <div style={heroTextStyles}>
-          <h1 style={heroTitleStyles}>The Fastest Email Experience Ever Made</h1>
+          <h1 style={heroTitleStyles}>
+            We cut your time spent on emails by 75%
+          </h1>
           <p style={heroSubtitleStyles}>
             Designed to help you focus and get through your email twice as fast.
           </p>
           <button style={heroButtonStyles}>Request Access</button>
         </div>
-        <div style={heroImageStyles}>
-          <img src="/hero-image.png" alt="Superhuman Interface" style={imageStyles} />
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" style={featuresStyles}>
-        <h2 style={sectionTitleStyles}>Why SuperClone?</h2>
-        <div style={featureListStyles}>
-          <div style={featureStyles}>
-            <h3>Speed</h3>
-            <p>Fly through your inbox with unmatched speed and efficiency.</p>
-          </div>
-          <div style={featureStyles}>
-            <h3>Focus</h3>
-            <p>Eliminate distractions and focus on what matters.</p>
-          </div>
-          <div style={featureStyles}>
-            <h3>Intelligence</h3>
-            <p>Smart features that make managing email a breeze.</p>
-          </div>
+        <div>
+          <Image 
+            src="/open-image-placeholder.png" 
+            alt="Open Image Placeholder" 
+            width={500} 
+            height={500} 
+            style={imageStyles}
+          />
         </div>
       </section>
     </div>
@@ -40,42 +31,43 @@ export default function Page() {
 }
 
 /* Inline CSS Styles */
-const containerStyles = { padding: "20px 40px" };
+const containerStyles = {
+  padding: "20px 40px",
+  textAlign: "center",
+};
 
 const heroStyles = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   padding: "60px 0",
-  background: "linear-gradient(135deg, #007BFF, #6A93E5)",
-  color: "#fff",
-  borderRadius: "10px",
+  background: "none", // No background
+  color: "#fff", // White text
 };
 
 const heroTextStyles = { maxWidth: "50%" };
 
-const heroTitleStyles = { fontSize: "48px", marginBottom: "20px" };
+const heroTitleStyles = {
+  fontSize: "48px",
+  marginBottom: "20px",
+  fontFamily: "GothamCond-Medium, Arial, sans-serif", // GothamCond-Medium for the title
+};
 
-const heroSubtitleStyles = { fontSize: "18px", marginBottom: "30px" };
+const heroSubtitleStyles = {
+  fontSize: "18px",
+  marginBottom: "30px",
+  fontFamily: "GothamCond-Light, Arial, sans-serif", // GothamCond-Light for the subtitle
+};
 
 const heroButtonStyles = {
-  backgroundColor: "#fff",
-  color: "#007BFF",
+  backgroundColor: "#007BFF", // Simple blue button
+  color: "#fff",
   padding: "15px 30px",
   border: "none",
   borderRadius: "5px",
   fontSize: "16px",
   cursor: "pointer",
+  fontFamily: "GothamCond-Light, Arial, sans-serif", // GothamCond-Light for button text
 };
 
-const heroImageStyles = { maxWidth: "40%" };
-
-const imageStyles = { maxWidth: "100%", borderRadius: "10px" };
-
-const featuresStyles = { padding: "40px 0", textAlign: "center" };
-
-const sectionTitleStyles = { marginBottom: "20px", fontSize: "32px" };
-
-const featureListStyles = { display: "flex", justifyContent: "center", gap: "40px" };
-
-const featureStyles = { maxWidth: "250px", textAlign: "left" };
+const imageStyles = { borderRadius: "10px" };

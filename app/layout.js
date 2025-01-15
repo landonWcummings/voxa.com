@@ -1,44 +1,49 @@
-import './globals.css';
-import Link from 'next/link'; // Import Link from Next.js
+import Link from "next/link";
+import "./globals.css"; // Ensure font-face declarations are included here
 
+// Server-side metadata
 export const metadata = {
-  title: "SuperClone",
-  description: "A fast, clean, and minimal email experience.",
+  title: "VOXA",
+  description: "Revolutionize your email workflow.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header style={headerStyles}>
-          <div style={logoAndNavStyles}>
-            {/* Link the VOXA logo to the home page */}
-            <Link href="/" style={logoStyles}>
-              VOXA
-            </Link>
-            <nav style={navStyles}>
-              <a href="#features" style={linkStyles}>
-                Features
-              </a>
-              <a href="#about" style={linkStyles}>
-                About
-              </a>
-              <a href="#pricing" style={linkStyles}>
-                Pricing
-              </a>
-            </nav>
-          </div>
-          {/* Start For Free Button */}
-          <a href="/signin" style={ctaStyles}>
-            Start For Free
-          </a>
-        </header>
+        <NavigationBar />
         <main>{children}</main>
-        <footer style={footerStyles}>
-          <p>&copy; 2025 VOXA. All rights reserved.</p>
-        </footer>
       </body>
     </html>
+  );
+}
+
+function NavigationBar() {
+  return (
+    <header style={headerStyles}>
+      <div style={logoAndNavStyles}>
+        {/* VOXA Logo */}
+        <Link href="/" style={logoStyles}>
+          VOXA
+        </Link>
+        {/* Navigation Links */}
+        <nav style={navStyles}>
+          <Link href="#features" style={linkStyles}>
+            Features
+          </Link>
+          <Link href="#about" style={linkStyles}>
+            About
+          </Link>
+          <Link href="#pricing" style={linkStyles}>
+            Pricing
+          </Link>
+        </nav>
+      </div>
+      {/* Button */}
+      <a href="/signin" style={ctaStyles}>
+        Start For Free
+      </a>
+    </header>
   );
 }
 
@@ -52,7 +57,7 @@ const headerStyles = {
   top: 0,
   zIndex: 1000,
   backdropFilter: "blur(10px)",
-  backgroundColor: "rgba(0, 0, 0, 0.6)",
+  backgroundColor: "rgba(0, 0, 0, 0.6)", // Transparent dark background
   boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.3)",
 };
 
@@ -65,10 +70,9 @@ const logoAndNavStyles = {
 const logoStyles = {
   fontSize: "1.8rem",
   fontWeight: "bold",
-  fontFamily: "Kunika, Arial, sans-serif",
-  color: "#ffffff",
+  fontFamily: "Kunika, Arial, sans-serif", // VOXA logo uses Kunika
+  color: "#ffffff", // White text for the logo
   textDecoration: "none",
-  cursor: "pointer",
 };
 
 const navStyles = {
@@ -79,7 +83,9 @@ const navStyles = {
 const linkStyles = {
   textDecoration: "none",
   color: "#ffffff",
-  fontWeight: "bold",
+  fontWeight: "normal",
+  fontFamily: "GothamSSm-Light, Arial, sans-serif", // Links use GothamSSm-Light
+  fontSize: "1rem",
 };
 
 const ctaStyles = {
@@ -92,12 +98,5 @@ const ctaStyles = {
   borderRadius: "5px",
   cursor: "pointer",
   fontSize: "16px",
-  fontWeight: "bold",
-};
-
-const footerStyles = {
-  textAlign: "center",
-  padding: "20px",
-  backgroundColor: "#333333",
-  color: "#ffffff",
+  fontFamily: "GothamSSm-Light, Arial, sans-serif", // Button uses GothamSSm-Light
 };

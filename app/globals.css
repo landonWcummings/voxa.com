@@ -3,6 +3,34 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: 'GothamSSm-Light';
+  src: url('/fonts/GothamSSm-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamSSm-Medium';
+  src: url('/fonts/GothamSSm-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamCond-Light';
+  src: url('/fonts/GothamCond-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamCond-Medium';
+  src: url('/fonts/GothamCond-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Kunika';
   src: url('/fonts/Kunika-Regular.otf') format('opentype');
   font-weight: normal;

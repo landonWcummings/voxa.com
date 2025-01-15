@@ -18,9 +18,6 @@ export default function SignIn() {
   );
 }
 
-/* Inline Styles (same as before) */
-
-
 /* Inline CSS Styles */
 const containerStyles = {
   display: "flex",
