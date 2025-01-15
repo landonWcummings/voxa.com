@@ -21,12 +21,6 @@ export default function SignIn() {
 /* Inline Styles (same as before) */
 
 
-// Placeholder for Google Sign-In functionality
-function handleGoogleSignIn() {
-  alert("Google Sign-In functionality not implemented yet.");
-  // Replace the above line with your actual Google Sign-In logic
-}
-
 /* Inline CSS Styles */
 const containerStyles = {
   display: "flex",
