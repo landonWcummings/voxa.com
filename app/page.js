@@ -1,127 +1,81 @@
-"use client";
+"use client"; // Enable interactivity and hooks like useState/useEffect
 
-import React from 'react';
-
-const IntroPage = () => {
+export default function Page() {
   return (
-    <div style={styles.container}>
-      {/* Header Section */}
-      <header style={styles.header}>
-        <div style={styles.logo}>Voxa</div>
-        <nav style={styles.nav}>
-          <a href="#features" style={styles.navLink}>Features</a>
-          <a href="#about" style={styles.navLink}>About</a>
-          <a href="#contact" style={styles.navLink}>Contact</a>
-        </nav>
-      </header>
-
+    <div style={containerStyles}>
       {/* Hero Section */}
-      <main style={styles.heroSection}>
-        <h1 style={styles.title}>Welcome to Voxa</h1>
-        <p style={styles.subtitle}>Where Innovation Meets Simplicity</p>
-        <button style={styles.ctaButton} onClick={() => alert('Getting Started!')}>
-          Get Started
-        </button>
-      </main>
-
-      {/* Footer Section */}
-      <footer style={styles.footer}>
-        <p style={styles.footerText}>© 2025 Voxa. All rights reserved.</p>
-        
-        {/* YouTube Video */}
-        <div style={styles.videoContainer}>
-          <iframe 
-            width="681" 
-            height="383" 
-            src="https://www.youtube.com/embed/WUspEXAHGok" 
-            title="BETTER AD" 
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerPolicy="strict-origin-when-cross-origin" 
-            allowFullScreen
-          ></iframe>
+      <section style={heroStyles}>
+        <div style={heroTextStyles}>
+          <h1 style={heroTitleStyles}>The Fastest Email Experience Ever Made</h1>
+          <p style={heroSubtitleStyles}>
+            Designed to help you focus and get through your email twice as fast.
+          </p>
+          <button style={heroButtonStyles}>Request Access</button>
         </div>
-      </footer>
+        <div style={heroImageStyles}>
+          <img src="/hero-image.png" alt="Superhuman Interface" style={imageStyles} />
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" style={featuresStyles}>
+        <h2 style={sectionTitleStyles}>Why SuperClone?</h2>
+        <div style={featureListStyles}>
+          <div style={featureStyles}>
+            <h3>Speed</h3>
+            <p>Fly through your inbox with unmatched speed and efficiency.</p>
+          </div>
+          <div style={featureStyles}>
+            <h3>Focus</h3>
+            <p>Eliminate distractions and focus on what matters.</p>
+          </div>
+          <div style={featureStyles}>
+            <h3>Intelligence</h3>
+            <p>Smart features that make managing email a breeze.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
+}
+
+/* Inline CSS Styles */
+const containerStyles = { padding: "20px 40px" };
+
+const heroStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "60px 0",
+  background: "linear-gradient(135deg, #007BFF, #6A93E5)",
+  color: "#fff",
+  borderRadius: "10px",
 };
 
-const styles = {
-  container: {
-    fontFamily: 'Arial, sans-serif',
-    color: '#000',
-    margin: 0,
-    padding: 0,
-    textAlign: 'center',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem 2rem',
-    backgroundColor: '#f8f9fa',
-    borderBottom: '1px solid #eaeaea',
-  },
-  logo: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  nav: {
-    display: 'flex',
-    gap: '1rem',
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#000',
-    fontSize: '1rem',
-  },
-  heroSection: {
-    padding: '4rem 2rem',
-    backgroundImage: 'url("/logo.png")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '80vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#000',
-  },
-  title: {
-    fontSize: '3rem',
-    margin: '0 0 1rem',
-    color: '#000',
-  },
-  subtitle: {
-    fontSize: '1.25rem',
-    margin: '0 0 2rem',
-    color: '#000',
-  },
-  ctaButton: {
-    padding: '0.75rem 1.5rem',
-    fontSize: '1rem',
-    color: '#fff',
-    backgroundColor: '#007bff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-  },
-  footer: {
-    padding: '1rem 0',
-    backgroundColor: '#f8f9fa',
-    borderTop: '1px solid #eaeaea',
-  },
-  footerText: {
-    fontSize: '0.875rem',
-    color: '#000',
-    margin: 0,
-  },
-  videoContainer: {
-    marginTop: '1rem',
-  },
+const heroTextStyles = { maxWidth: "50%" };
+
+const heroTitleStyles = { fontSize: "48px", marginBottom: "20px" };
+
+const heroSubtitleStyles = { fontSize: "18px", marginBottom: "30px" };
+
+const heroButtonStyles = {
+  backgroundColor: "#fff",
+  color: "#007BFF",
+  padding: "15px 30px",
+  border: "none",
+  borderRadius: "5px",
+  fontSize: "16px",
+  cursor: "pointer",
 };
 
-export default IntroPage;
+const heroImageStyles = { maxWidth: "40%" };
+
+const imageStyles = { maxWidth: "100%", borderRadius: "10px" };
+
+const featuresStyles = { padding: "40px 0", textAlign: "center" };
+
+const sectionTitleStyles = { marginBottom: "20px", fontSize: "32px" };
+
+const featureListStyles = { display: "flex", justifyContent: "center", gap: "40px" };
+
+const featureStyles = { maxWidth: "250px", textAlign: "left" };

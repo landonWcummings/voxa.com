@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Kunika';
+  src: url('/fonts/Kunika-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -15,7 +22,10 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Arial, sans-serif';
+  margin: 0;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #4C4F8A, #354F73); /* Gradient background */
+  color: #ffffff; /* Optional: Change text color to ensure good contrast */
 }
+
