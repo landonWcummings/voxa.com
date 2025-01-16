@@ -1,73 +1,76 @@
-"use client"; // Enable interactivity and hooks like useState/useEffect
-import Image from 'next/image';
-import './globals.css'; // Make sure your global styles include the font-face declarations
+"use client";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Page() {
   return (
     <div style={containerStyles}>
-      {/* Hero Section */}
       <section style={heroStyles}>
         <div style={heroTextStyles}>
-          <h1 style={heroTitleStyles}>
-            We cut your time spent on emails by 75%
-          </h1>
+          <h1 style={heroTitleStyles}>We cut your time spent on emails by 75%</h1>
           <p style={heroSubtitleStyles}>
-            Designed to help you focus and get through your email twice as fast.
+            Revolutionize your workflow with VOXA.
           </p>
           <button style={heroButtonStyles}>Request Access</button>
-        </div>
-        <div>
-          <Image 
-            src="/open-image-placeholder.png" 
-            alt="Open Image Placeholder" 
-            width={500} 
-            height={500} 
-            style={imageStyles}
-          />
+          <p style={privacyTextStyles}>
+            By signing up, you agree to the{" "}
+            <Link href="/PrivacyPolicy" style={privacyLinkStyles}>
+              Privacy Policy
+            </Link>.
+          </p>
         </div>
       </section>
     </div>
   );
 }
 
-/* Inline CSS Styles */
+/* Styles */
 const containerStyles = {
-  padding: "20px 40px",
   textAlign: "center",
+  marginTop: "50px",
 };
 
 const heroStyles = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
   padding: "60px 0",
-  background: "none", // No background
-  color: "#fff", // White text
+  background: "linear-gradient(135deg, #4C4F8A, #354F73)",
+  color: "#ffffff",
 };
 
-const heroTextStyles = { maxWidth: "50%" };
+const heroTextStyles = {
+  maxWidth: "600px",
+  margin: "0 auto",
+};
 
 const heroTitleStyles = {
   fontSize: "48px",
   marginBottom: "20px",
-  fontFamily: "GothamCond-Medium, Arial, sans-serif", // GothamCond-Medium for the title
+  fontFamily: "GothamCond-Medium, Arial, sans-serif",
 };
 
 const heroSubtitleStyles = {
   fontSize: "18px",
   marginBottom: "30px",
-  fontFamily: "GothamCond-Light, Arial, sans-serif", // GothamCond-Light for the subtitle
 };
 
 const heroButtonStyles = {
-  backgroundColor: "#007BFF", // Simple blue button
-  color: "#fff",
+  backgroundColor: "#007BFF",
+  color: "#ffffff",
   padding: "15px 30px",
   border: "none",
   borderRadius: "5px",
   fontSize: "16px",
   cursor: "pointer",
-  fontFamily: "GothamCond-Light, Arial, sans-serif", // GothamCond-Light for button text
 };
 
-const imageStyles = { borderRadius: "10px" };
+const privacyTextStyles = {
+  marginTop: "15px",
+  fontSize: "14px",
+  color: "#ffffff",
+  fontFamily: "GothamSSm-Light, Arial, sans-serif",
+};
+
+const privacyLinkStyles = {
+  color: "#FFD700", // Gold color for the link
+  textDecoration: "underline",
+  cursor: "pointer",
+};
