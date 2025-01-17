@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Page() {
   return (
@@ -14,6 +13,10 @@ export default function Page() {
           <button style={heroButtonStyles}>Request Access</button>
           <p style={privacyTextStyles}>
             By signing up, you agree to the{" "}
+            <Link href="/TermsOfService" style={privacyLinkStyles}>
+              Terms of Service
+            </Link>{" "}
+            and{" "}
             <Link href="/PrivacyPolicy" style={privacyLinkStyles}>
               Privacy Policy
             </Link>.
