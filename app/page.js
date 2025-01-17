@@ -10,7 +10,9 @@ export default function Page() {
           <p style={heroSubtitleStyles}>
             Revolutionize your workflow with VOXA.
           </p>
-          <button style={heroButtonStyles}>Request Access</button>
+          <Link href="/login">
+            <button style={heroButtonStyles}>Save Time Today</button>
+          </Link>
           <p style={privacyTextStyles}>
             By signing up, you agree to the{" "}
             <Link href="/TermsOfService" style={privacyLinkStyles}>
@@ -63,6 +65,7 @@ const heroButtonStyles = {
   borderRadius: "5px",
   fontSize: "16px",
   cursor: "pointer",
+  textDecoration: "none", // Ensures it's styled like a button
 };
 
 const privacyTextStyles = {
