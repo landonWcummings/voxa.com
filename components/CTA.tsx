@@ -1,4 +1,5 @@
 import { VoxaButton } from "@/components/ui/VoxaButton"
+import Link from "next/link"
 
 export function CTA() {
   return (
@@ -11,13 +12,15 @@ export function CTA() {
         <p className="mt-4 text-lg leading-6 text-gray-600">
           Join thousands of professionals who are saving time and improving their email communication with Voxa.
         </p>
-        <VoxaButton
-          variant="outline"
-          size="lg"
-          className="mt-8 bg-white text-blue-600 hover:bg-voxaLight hover:text-white border-white"
-        >
-          Get started for free
-        </VoxaButton>
+        <Link href="/login">
+          <VoxaButton
+            variant="outline"
+            size="lg"
+            className="mt-8 bg-white text-[#373C8A] hover:bg-[#5158B0] hover:text-white border-white"
+          >
+            Get started for free
+          </VoxaButton>
+        </Link>
       </div>
     </div>
   )

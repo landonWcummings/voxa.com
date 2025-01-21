@@ -73,58 +73,49 @@ export default function PlansPage() {
               </p>
             </div>
 
-            <div className="mt-20 flow-root">
-              <div className="isolate -mt-16 grid max-w-sm gap-y-16 divide-y divide-gray-100 sm:mx-auto lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-                {plans.map((plan, planIdx) => (
-                  <div
-                    key={plan.name}
-                    className={`relative pt-16 lg:px-8 ${
-                      plan.highlighted ? "lg:-mt-8 lg:mb-8 ring-2 ring-[#373C8A] rounded-3xl" : ""
+            <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12">
+              {plans.map((plan) => (
+                <div
+                  key={plan.name}
+                  className={`relative flex flex-col rounded-3xl bg-white p-8 xl:p-10 ${
+                    plan.highlighted ? "lg:z-10 lg:shadow-xl" : "ring-1 ring-gray-200"
+                  }`}
+                >
+                  {plan.highlighted && (
+                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 rounded-full bg-[#373C8A] px-3 py-1 text-sm font-semibold text-white">
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="mb-4 mt-4">
+                    <h3 id={plan.name} className="text-2xl font-bold tracking-tight text-gray-900">
+                      {plan.name}
+                    </h3>
+                    <p className="mt-6 flex items-baseline gap-x-1">
+                      <span className="text-4xl font-bold tracking-tight text-gray-900">{plan.price}</span>
+                      <span className="text-sm font-semibold leading-6 text-gray-600">/{plan.period}</span>
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-gray-500">{plan.description}</p>
+                  </div>
+
+                  <VoxaButton
+                    variant={plan.highlighted ? "default" : "outline"}
+                    className={`mt-6 w-full ${
+                      plan.highlighted ? "bg-[#373C8A] hover:bg-[#474db2]" : "text-[#373C8A] border-[#373C8A]"
                     }`}
                   >
-                    {plan.highlighted && (
-                      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                        <span className="inline-flex items-center rounded-full bg-[#373C8A] px-4 py-1 text-sm font-medium text-white">
-                          Most Popular
-                        </span>
-                      </div>
-                    )}
-                    <div className="mx-auto px-6 lg:px-8">
-                      <h3 id={plan.name} className="text-2xl font-bold leading-7 text-gray-900">
-                        {plan.name}
-                      </h3>
-                      <p className="mt-6 flex items-baseline gap-x-1">
-                        <span className="text-4xl font-bold tracking-tight text-gray-900">{plan.price}</span>
-                        <span className="text-sm font-semibold leading-6 text-gray-600">/{plan.period}</span>
-                      </p>
-                      <p className="mt-3 text-sm leading-6 text-gray-500">{plan.description}</p>
-                      <VoxaButton
-                        variant={plan.highlighted ? "default" : "outline"}
-                        className={`mt-8 w-full ${
-                          plan.highlighted ? "bg-[#373C8A] hover:bg-[#474db2]" : "text-[#373C8A] border-[#373C8A]"
-                        }`}
-                      >
-                        {plan.buttonText}
-                      </VoxaButton>
-                      <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
-                        {plan.features.map((feature) => (
-                          <li key={feature} className="flex gap-x-3">
-                            <Check className="h-6 w-5 flex-none text-[#373C8A]" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                    {plan.buttonText}
+                  </VoxaButton>
 
-            <div className="mt-20 mx-auto max-w-3xl text-center">
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900">Frequently asked questions</h2>
-              <p className="mt-6 text-base leading-7 text-gray-600">
-                Have a different question? Reach out to our support team and we'll be happy to help.
-              </p>
+                  <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex gap-x-3">
+                        <Check className="h-6 w-5 flex-none text-[#373C8A]" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </div>

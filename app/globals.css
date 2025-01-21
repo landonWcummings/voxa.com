@@ -2,58 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'GothamSSm-Light';
-  src: url('/fonts/GothamSSm-Light.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GothamSSm-Medium';
-  src: url('/fonts/GothamSSm-Medium.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GothamCond-Light';
-  src: url('/fonts/GothamCond-Light.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GothamCond-Medium';
-  src: url('/fonts/GothamCond-Medium.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Kunika';
-  src: url('/fonts/Kunika-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
 }
 
 body {
-  font-family: 'Arial, sans-serif';
-  margin: 0;
-  line-height: 1.6;
-  background: linear-gradient(135deg, #4C4F8A, #354F73); /* Gradient background */
-  color: #ffffff; /* Optional: Change text color to ensure good contrast */
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-gotham-medium), sans-serif;
+}
+
+p,
+a,
+span,
+div {
+  font-family: var(--font-gotham-light), sans-serif;
+}
+
+.font-kunika {
+  font-family: var(--font-kunika), sans-serif;
 }
 

@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ["localhost", "voxa.com"], // Add any other domains you're loading images from
+      domains: ["localhost", "voxa.com"],
     },
   }
   

@@ -35,21 +35,26 @@ export function Pricing() {
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
           Whether you're just starting out or looking for advanced features, we have a plan that fits your needs.
         </p>
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 md:grid-cols-3 lg:gap-12">
+        <div className="mt-20 grid grid-cols-1 gap-8 sm:mt-24 md:grid-cols-3 lg:gap-12">
           {plans.map((plan) => (
-            <div key={plan.name} className="rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10">
-              <div className="flex items-center justify-between gap-x-4">
+            <div
+              key={plan.name}
+              className={`rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10 ${plan.name === "Plus" ? "relative mt-6 md:mt-0" : ""}`}
+            >
+              <div className="flex flex-col items-start gap-4">
                 <h3 className="text-lg font-semibold leading-8 text-gray-900">{plan.name}</h3>
-                {plan.name === "Plus" && (
-                  <p className="rounded-full bg-[#373C8A] px-2.5 py-1 text-xs font-semibold leading-5 text-white">
-                    Most popular
-                  </p>
-                )}
+                <p className="text-sm leading-6 text-gray-600">{plan.description}</p>
               </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600">{plan.description}</p>
+              {plan.name === "Plus" && (
+                <p className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full bg-[#373C8A] px-3 py-1 text-sm font-semibold leading-6 text-white">
+                  Most popular
+                </p>
+              )}
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span className="text-4xl font-bold tracking-tight text-gray-900">{plan.price}</span>
-                {plan.name !== "Free" && <span className="text-sm font-semibold leading-6 text-gray-600">/month</span>}
+                <span className="text-sm font-semibold leading-6 text-gray-600">
+                  {plan.name === "Free" ? "/forever" : "/month"}
+                </span>
               </p>
               <VoxaButton variant={plan.name === "Plus" ? "default" : "outline"} className="mt-6 w-full">
                 {plan.name === "Free" ? "Get started" : "Subscribe"}
