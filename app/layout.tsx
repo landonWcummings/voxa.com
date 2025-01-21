@@ -6,18 +6,33 @@ import localFont from "next/font/local"
 const inter = Inter({ subsets: ["latin"] })
 
 const kunika = localFont({
-  src: "/fonts/Kunika.otf", // Changed to root-relative path
+  src: "../public/fonts/Kunika.otf",
   variable: "--font-kunika",
+  display: "swap",
 })
 
 const gothamLight = localFont({
-  src: "/fonts/GothamSSm-Light.otf", // Changed to root-relative path
+  src: "../public/fonts/GothamSSm-Light.otf",
   variable: "--font-gotham-light",
+  display: "swap",
 })
 
 const gothamMedium = localFont({
-  src: "/fonts/GothamSSm-Medium.otf", // Changed to root-relative path
+  src: "../public/fonts/GothamSSm-Medium.otf",
   variable: "--font-gotham-medium",
+  display: "swap",
+})
+
+const gothamCondLight = localFont({
+  src: "../public/fonts/GothamCond-Light.otf",
+  variable: "--font-gotham-cond-light",
+  display: "swap",
+})
+
+const gothamCondMedium = localFont({
+  src: "../public/fonts/GothamCond-Medium.otf",
+  variable: "--font-gotham-cond-medium",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -32,7 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${kunika.variable} ${gothamLight.variable} ${gothamMedium.variable}`}>
+      <body
+        className={`${inter.className} ${kunika.variable} ${gothamLight.variable} ${gothamMedium.variable} ${gothamCondLight.variable} ${gothamCondMedium.variable}`}
+      >
         {children}
       </body>
     </html>
