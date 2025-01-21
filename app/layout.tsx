@@ -6,17 +6,17 @@ import localFont from "next/font/local"
 const inter = Inter({ subsets: ["latin"] })
 
 const kunika = localFont({
-  src: "../public/fonts/Kunika.otf",
+  src: "/fonts/Kunika.otf", // Changed to root-relative path
   variable: "--font-kunika",
 })
 
 const gothamLight = localFont({
-  src: "../public/fonts/GothamSSM-Light.otf",
+  src: "/fonts/GothamSSm-Light.otf", // Changed to root-relative path
   variable: "--font-gotham-light",
 })
 
 const gothamMedium = localFont({
-  src: "../public/fonts/GothamSSM-Medium.otf",
+  src: "/fonts/GothamSSm-Medium.otf", // Changed to root-relative path
   variable: "--font-gotham-medium",
 })
 
