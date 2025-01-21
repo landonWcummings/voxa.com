@@ -23,21 +23,12 @@ const gothamMedium = localFont({
   display: "swap",
 })
 
-const gothamCondLight = localFont({
-  src: "../public/fonts/GothamCond-Light.otf",
-  variable: "--font-gotham-cond-light",
-  display: "swap",
-})
-
-const gothamCondMedium = localFont({
-  src: "../public/fonts/GothamCond-Medium.otf",
-  variable: "--font-gotham-cond-medium",
-  display: "swap",
-})
-
 export const metadata: Metadata = {
   title: "Voxa - AI-Powered Email Writing Assistant",
   description: "Voxa is an AI Gmail Writing extension that drafts and responds to emails in your authentic voice.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
@@ -47,9 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} ${kunika.variable} ${gothamLight.variable} ${gothamMedium.variable} ${gothamCondLight.variable} ${gothamCondMedium.variable}`}
-      >
+      <body className={`${inter.className} ${kunika.variable} ${gothamLight.variable} ${gothamMedium.variable}`}>
         {children}
       </body>
     </html>
