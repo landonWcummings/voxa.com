@@ -1,18 +1,14 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
-    images: {
-      domains: ["localhost", "voxa.com"],
-    },
-    webpack: (config) => {
-      config.module.rules.push({
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
-      })
-      return config
-    },
-  }
-  
-  module.exports = nextConfig
-  
-  
+const path = require("path");
+
+module.exports = {
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname),
+      "@/components": path.resolve(__dirname, "components"),
+      "@/lib": path.resolve(__dirname, "lib"),
+      "@/pages": path.resolve(__dirname, "pages")
+    };
+    return config;
+  },
+};

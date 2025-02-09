@@ -6,19 +6,32 @@ const plans = [
     name: "Free",
     price: "$0",
     description: "Basic features for personal use",
-    features: ["5 email drafts per day", "Basic AI assistance", "Standard support"],
+    features: ["5 email drafts per day", "Basic AI assistance", "Customer support"],
   },
   {
     name: "Plus",
-    price: "$15",
+    price: "$20",
     description: "Advanced features for professionals",
-    features: ["Unlimited email drafts", "Advanced AI assistance", "Priority support", "Custom templates"],
+    features: [
+      "40 smart drafts a day",
+      "Advanced AI assistance",
+      "Tone imitation",
+      "Contextual recall",
+      "Priority support",
+    ],
   },
   {
     name: "Pro",
     price: "$40",
     description: "Premium features for power users",
-    features: ["All Plus features", "Team collaboration", "Analytics dashboard", "API access", "24/7 premium support"],
+    features: [
+      "Infinite smart drafts a day",
+      "Advanced AI assistance",
+      "Tone imitation",
+      "Contextual recall",
+      "24/7 premium support",
+      "Up to 3 Gmail accounts",
+    ],
   },
 ]
 
