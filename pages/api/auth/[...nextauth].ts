@@ -11,6 +11,7 @@ const requiredEnvVars = {
 
 for (const [key, value] of Object.entries(requiredEnvVars)) {
   if (!value) {
+    console.error(`Missing required environment variable: ${key}`)
     throw new Error(`Missing required environment variable: ${key}`)
   }
 }
@@ -64,16 +65,27 @@ export const authOptions: NextAuthOptions = {
   },
   debug: process.env.NODE_ENV === "development",
   logger: {
-    error(code, ...message) {
-      console.error(code, ...message)
+    error(code, metadata) {
+      console.error(`[NextAuth] Error: ${code}`, metadata)
     },
-    warn(code, ...message) {
-      console.warn(code, ...message)
+    warn(code) {
+      console.warn(`[NextAuth] Warning: ${code}`)
     },
-    debug(code, ...message) {
+    debug(code, metadata) {
       if (process.env.NODE_ENV === "development") {
-        console.debug(code, ...message)
+        console.debug(`[NextAuth] Debug: ${code}`, metadata)
       }
+    },
+  },
+  events: {
+    async signIn(message) {
+      console.log("[NextAuth] Successful sign in", message)
+    },
+    async signOut(message) {
+      console.log("[NextAuth] Sign out", message)
+    },
+    async error(message) {
+      console.error("[NextAuth] Error", message)
     },
   },
 }

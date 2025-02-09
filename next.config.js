@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const { NEXTAUTH_URL } = process.env
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -26,13 +24,15 @@ const nextConfig = {
       },
     ]
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "/api/:path*",
-      },
-    ]
+  // Enable more detailed logging
+  onError: (error) => {
+    console.error("Next.js build error:", error)
+  },
+  // Enable more detailed logging for API routes
+  experimental: {
+    logging: {
+      level: "verbose",
+    },
   },
 }
 
