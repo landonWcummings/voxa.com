@@ -2,6 +2,8 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import localFont from "next/font/local"
+import { SessionProvider } from "@/components/SessionProvider"
+import type React from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -26,9 +28,13 @@ const gothamMedium = localFont({
 export const metadata: Metadata = {
   title: "Voxa - AI-Powered Email Writing Assistant",
   description: "Voxa is an AI Gmail Writing extension that drafts and responds to emails in your authentic voice.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: [
+    { rel: "icon", url: "/favicon.ico" },
+    { rel: "icon", type: "image/png", sizes: "32x32", url: "/favicon-32x32.png" },
+    { rel: "icon", type: "image/png", sizes: "16x16", url: "/favicon-16x16.png" },
+    { rel: "apple-touch-icon", sizes: "180x180", url: "/apple-touch-icon.png" },
+  ],
+  manifest: "/site.webmanifest",
 }
 
 export default function RootLayout({
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${kunika.variable} ${gothamLight.variable} ${gothamMedium.variable}`}>
-        {children}
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   )
