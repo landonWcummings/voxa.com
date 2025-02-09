@@ -8,10 +8,17 @@ import { useSearchParams } from "next/navigation"
 
 export default function LoginPage() {
   const searchParams = useSearchParams()
-  const error = searchParams?.get("error") ?? null
+  const error = searchParams?.get("error")
 
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/dashboard" })
+  const handleGoogleLogin = async () => {
+    try {
+      await signIn("google", {
+        callbackUrl: "/dashboard",
+        redirect: true,
+      })
+    } catch (error) {
+      console.error("Sign in error:", error)
+    }
   }
 
   return (
@@ -21,9 +28,12 @@ export default function LoginPage() {
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h1 className="text-2xl font-bold text-center mb-6">Login to Voxa</h1>
           {error && (
-            <p className="text-red-500 text-center mb-4">
-              {error === "AccessDenied" ? "Access denied. Please try again." : "An error occurred. Please try again."}
-            </p>
+            <div className="mb-4 p-4 text-sm text-red-800 bg-red-100 rounded-lg">
+              {error === "Configuration" &&
+                "There was a problem with the server configuration. Please try again later."}
+              {error === "AccessDenied" && "Access was denied. Please make sure you grant all required permissions."}
+              {!["Configuration", "AccessDenied"].includes(error) && "An error occurred. Please try again."}
+            </div>
           )}
           <VoxaButton onClick={handleGoogleLogin} className="w-full flex items-center justify-center" size="lg">
             <Google className="mr-2 h-5 w-5" />

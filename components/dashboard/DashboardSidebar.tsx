@@ -61,8 +61,8 @@ export function DashboardSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild isActive={pathname === item.href}>
-                    <Link href={item.href} className="flex items-center gap-2">
+                  <SidebarMenuButton isActive={pathname === item.href}>
+                    <Link href={item.href} className="flex items-center gap-2 w-full h-full">
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
                     </Link>
