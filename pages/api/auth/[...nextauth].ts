@@ -50,12 +50,8 @@ export const authOptions: NextAuthOptions = {
       }
     },
     async redirect({ url, baseUrl }) {
-      // Handle relative and absolute URLs
-      if (url.startsWith("/")) {
-        return `${baseUrl}${url}`
-      } else if (url.startsWith(baseUrl)) {
-        return url
-      }
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      else if (new URL(url).origin === baseUrl) return url
       return baseUrl
     },
   },
@@ -78,14 +74,23 @@ export const authOptions: NextAuthOptions = {
     },
   },
   events: {
-    async signIn(message) {
-      console.log("[NextAuth] Successful sign in", message)
+    async signIn({ user, account, profile, isNewUser }) {
+      console.log("[NextAuth] Successful sign in", { user, account, profile, isNewUser })
     },
-    async signOut(message) {
-      console.log("[NextAuth] Sign out", message)
+    async signOut({ session, token }) {
+      console.log("[NextAuth] Sign out", { session, token })
     },
-    async error(message) {
-      console.error("[NextAuth] Error", message)
+    async createUser({ user }) {
+      console.log("[NextAuth] New user created", user)
+    },
+    async updateUser({ user }) {
+      console.log("[NextAuth] User updated", user)
+    },
+    async linkAccount({ user, account, profile }) {
+      console.log("[NextAuth] Account linked", { user, account, profile })
+    },
+    async session({ session, token }) {
+      console.log("[NextAuth] Session created/updated", { session, token })
     },
   },
 }
