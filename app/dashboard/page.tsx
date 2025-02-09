@@ -17,12 +17,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">245</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground">
               <span className="text-green-500 flex items-center">
                 +20.1% <ArrowUpRight className="h-4 w-4" />
               </span>
               from last month
-            </p>
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -32,12 +32,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">34</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground">
               <span className="text-red-500 flex items-center">
                 -4.5% <ArrowDownRight className="h-4 w-4" />
               </span>
               from last week
-            </p>
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -47,12 +47,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">84%</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground">
               <span className="text-green-500 flex items-center">
                 +12.2% <ArrowUpRight className="h-4 w-4" />
               </span>
               from last month
-            </p>
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -62,7 +62,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">16</div>
-            <p className="text-xs text-muted-foreground">Resets in 14 hours</p>
+            <div className="text-xs text-muted-foreground">Resets in 14 hours</div>
           </CardContent>
         </Card>
       </div>

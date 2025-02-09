@@ -1,13 +1,21 @@
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar"
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import type React from "react" // Added import for React
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
+import type { ReactNode } from "react"
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
+  const session = await getServerSession()
+
+  if (!session) {
+    redirect("/login")
+  }
+
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="flex min-h-screen">

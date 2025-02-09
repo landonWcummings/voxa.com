@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { NEXTAUTH_URL } = process.env
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -31,12 +33,6 @@ const nextConfig = {
         destination: "/api/:path*",
       },
     ]
-  },
-  env: {
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
 }
 
