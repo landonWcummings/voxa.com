@@ -8,8 +8,8 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
       type: "asset/resource",
-    })
-    return config
+    });
+    return config;
   },
   async headers() {
     return [
@@ -22,19 +22,12 @@ const nextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
-  // Enable more detailed logging
-  onError: (error) => {
-    console.error("Next.js build error:", error)
-  },
-  // Enable more detailed logging for API routes
+  // Removed unsupported keys: onError and experimental.logging
   experimental: {
-    logging: {
-      level: "verbose",
-    },
+    // Add any experimental options here that are supported by Next.js
   },
-}
+};
 
-module.exports = nextConfig
-
+module.exports = nextConfig;
