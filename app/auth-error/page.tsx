@@ -15,8 +15,8 @@ export default function AuthErrorPage() {
     }
   }, [errorCode, errorMessage])
 
-  const getErrorMessage = (code: string | null) => {
-    switch (code) {
+  const getErrorMessage = () => {
+    switch (errorCode) {
       case "auth/account-exists-with-different-credential":
         return "An account already exists with the same email address but different sign-in credentials."
       case "auth/cancelled-popup-request":
@@ -41,7 +41,7 @@ export default function AuthErrorPage() {
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">Authentication Error</h2>
         <div className="bg-red-50 p-4 rounded-md mb-4">
-          <p className="text-red-800">{getErrorMessage(errorCode)}</p>
+          <p className="text-red-800">{getErrorMessage()}</p>
         </div>
         <button
           onClick={() => router.push("/login")}
