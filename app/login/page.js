@@ -1,7 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
-import { auth, provider } from "@/app/firebaseConfig"
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { signInWithPopup, GoogleAuthProvider as FirebaseGoogleAuthProvider } from "firebase/auth"
+import { auth, googleProvider, GoogleAuthProvider } from "@/app/firebaseConfig"
+import { useRouter } from "next/navigation"
 import { useAuth } from "@/components/AuthProvider"
 
 export default function LoginPage() {
@@ -10,10 +11,12 @@ export default function LoginPage() {
   const [gmailConnected, setGmailConnected] = useState(false)
   const [isConnectingGmail, setIsConnectingGmail] = useState(false)
   const extensionId = "iakbjobmlikpklloibjdcljnmjoecpjc"
+  const router = useRouter()
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider)
+      await signInWithPopup(auth, googleProvider)
+      router.push("/")
     } catch (error) {
       console.error("Login Failed:", error)
     }
@@ -38,7 +41,7 @@ export default function LoginPage() {
 
       // You would typically store the Gmail access token here
       // For example, you might send it to your backend
-      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const credential = FirebaseGoogleAuthProvider.credentialFromResult(result)
       const gmailToken = credential?.accessToken
 
       console.log("Gmail connected successfully", { gmailToken })
@@ -67,9 +70,9 @@ export default function LoginPage() {
   const checkForExtension = () => {
     try {
       // Attempt to send a ping message to the extension.
-      if (typeof chrome !== "undefined" && chrome.runtime) {
-        chrome.runtime.sendMessage(extensionId, { ping: true }, (response) => {
-          if (chrome.runtime?.lastError) {
+      if (typeof window !== "undefined" && window.chrome && window.chrome.runtime) {
+        window.chrome.runtime.sendMessage(extensionId, { ping: true }, (response) => {
+          if (window.chrome.runtime?.lastError) {
             setExtensionMissing(true)
           }
         })

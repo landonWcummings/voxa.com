@@ -1,4 +1,5 @@
 "use client"
+
 import { useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
@@ -6,10 +7,9 @@ export default function AuthErrorPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const errorCode = searchParams?.get("code") || null
-  const errorMessage = searchParams?.get("message")
+  const errorMessage = searchParams?.get("message") || null
 
   useEffect(() => {
-    // Log the error for monitoring
     if (errorCode || errorMessage) {
       console.error("Authentication Error:", { code: errorCode, message: errorMessage })
     }
@@ -36,62 +36,16 @@ export default function AuthErrorPage() {
     }
   }
 
-  // Inline styles matching the login page style
-  const containerStyle = {
-    fontFamily: "'Arial', sans-serif",
-    backgroundColor: "#f4f4f9",
-    display: "flex",
-    flexDirection: "column" as const,
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    margin: 0,
-  }
-
-  const cardStyle = {
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-    textAlign: "center" as const,
-    width: "350px",
-  }
-
-  const buttonStyle = {
-    width: "100%",
-    padding: "12px",
-    border: "none",
-    backgroundColor: "#007BFF",
-    color: "white",
-    fontSize: "16px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    transition: "background-color 0.3s",
-    marginTop: "20px",
-  }
-
-  const errorStyle = {
-    padding: "15px",
-    background: "#f8d7da",
-    color: "#721c24",
-    borderRadius: "8px",
-    marginBottom: "20px",
-  }
-
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        <h2 style={{ color: "#333", marginBottom: "15px" }}>Authentication Error</h2>
-
-        <div style={errorStyle}>
-          <p>{getErrorMessage(errorCode)}</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">Authentication Error</h2>
+        <div className="bg-red-50 p-4 rounded-md mb-4">
+          <p className="text-red-800">{getErrorMessage(errorCode)}</p>
         </div>
-
         <button
           onClick={() => router.push("/login")}
-          style={buttonStyle}
-          onMouseOver={(e) => ((e.target as HTMLElement).style.backgroundColor = "#0056b3")}
-          onMouseOut={(e) => ((e.target as HTMLElement).style.backgroundColor = "#007BFF")}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
         >
           Return to Login
         </button>
