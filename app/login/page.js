@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
-import { signInWithPopup, GoogleAuthProvider as FirebaseGoogleAuthProvider } from "firebase/auth"
-import { auth, googleProvider, GoogleAuthProvider } from "@/app/firebaseConfig"
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { auth, googleProvider } from "@/app/firebaseConfig"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/components/AuthProvider"
 
@@ -41,7 +41,7 @@ export default function LoginPage() {
 
       // You would typically store the Gmail access token here
       // For example, you might send it to your backend
-      const credential = FirebaseGoogleAuthProvider.credentialFromResult(result)
+      const credential = GoogleAuthProvider.credentialFromResult(result)
       const gmailToken = credential?.accessToken
 
       console.log("Gmail connected successfully", { gmailToken })
@@ -119,7 +119,7 @@ export default function LoginPage() {
 
   const secondaryButtonStyle = {
     ...buttonStyle,
-    backgroundColor: "#28a745",
+    backgroundColor: "#007BFF", // Changed from #28a745 (green) to #007BFF (blue)
     marginTop: "15px",
   }
 
@@ -130,7 +130,7 @@ export default function LoginPage() {
   }
 
   const successStyle = {
-    color: "#28a745",
+    color: "#007BFF", // Changed from #28a745 (green) to #007BFF (blue)
     fontWeight: "bold",
     marginTop: "15px",
   }
@@ -165,8 +165,8 @@ export default function LoginPage() {
               <button
                 onClick={handleConnectGmail}
                 style={isConnectingGmail ? disabledButtonStyle : secondaryButtonStyle}
-                onMouseOver={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#218838") : undefined}
-                onMouseOut={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#28a745") : undefined}
+                onMouseOver={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#0056b3") : undefined} // Changed hover color
+                onMouseOut={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#007BFF") : undefined} // Changed hover color
                 disabled={isConnectingGmail}
               >
                 {isConnectingGmail ? "Connecting..." : "Connect Gmail Account"}
