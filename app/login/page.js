@@ -1,41 +1,85 @@
-"use client";
-import React, { useEffect, useState } from 'react';
-import { auth, provider } from "@/app/firebaseConfig";
-import { signInWithPopup } from "firebase/auth";
-import { useAuth } from "@/components/AuthProvider";
+"use client"
+import { useEffect, useState } from "react"
+import { auth, provider } from "@/app/firebaseConfig"
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { useAuth } from "@/components/AuthProvider"
 
 export default function LoginPage() {
-  const { user } = useAuth();
-  const [extensionMissing, setExtensionMissing] = useState(false);
-  const extensionId = "iakbjobmlikpklloibjdcljnmjoecpjc";
+  const { user } = useAuth()
+  const [extensionMissing, setExtensionMissing] = useState(false)
+  const [gmailConnected, setGmailConnected] = useState(false)
+  const [isConnectingGmail, setIsConnectingGmail] = useState(false)
+  const extensionId = "iakbjobmlikpklloibjdcljnmjoecpjc"
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider)
     } catch (error) {
-      console.error("Login Failed:", error);
+      console.error("Login Failed:", error)
     }
-  };
+  }
+
+  const handleConnectGmail = async () => {
+    try {
+      setIsConnectingGmail(true)
+
+      // Create a new provider instance with Gmail-specific scopes
+      const gmailProvider = new GoogleAuthProvider()
+      gmailProvider.addScope("https://www.googleapis.com/auth/gmail.readonly")
+      gmailProvider.addScope("https://www.googleapis.com/auth/gmail.send")
+      gmailProvider.addScope("https://www.googleapis.com/auth/gmail.compose")
+
+      // Force the user to select an account again
+      gmailProvider.setCustomParameters({
+        prompt: "select_account",
+      })
+
+      const result = await signInWithPopup(auth, gmailProvider)
+
+      // You would typically store the Gmail access token here
+      // For example, you might send it to your backend
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const gmailToken = credential?.accessToken
+
+      console.log("Gmail connected successfully", { gmailToken })
+      setGmailConnected(true)
+
+      // Here you would typically make an API call to your backend
+      // to store the Gmail token for this user
+    } catch (error) {
+      console.error("Gmail Connection Failed:", error)
+    } finally {
+      setIsConnectingGmail(false)
+    }
+  }
 
   useEffect(() => {
     // When a user is logged in, check for the extension after a short delay.
     if (user) {
-      setTimeout(checkForExtension, 1000);
+      setTimeout(checkForExtension, 1000)
+
+      // Check if Gmail is already connected
+      // This would typically be a check to your backend
+      // For now, we'll just use local state
     }
-  }, [user]);
+  }, [user])
 
   const checkForExtension = () => {
     try {
       // Attempt to send a ping message to the extension.
-      chrome.runtime.sendMessage(extensionId, { ping: true }, (response) => {
-        if (chrome.runtime.lastError) {
-          setExtensionMissing(true);
-        }
-      });
+      if (typeof chrome !== "undefined" && chrome.runtime) {
+        chrome.runtime.sendMessage(extensionId, { ping: true }, (response) => {
+          if (chrome.runtime?.lastError) {
+            setExtensionMissing(true)
+          }
+        })
+      } else {
+        setExtensionMissing(true)
+      }
     } catch (error) {
-      setExtensionMissing(true);
+      setExtensionMissing(true)
     }
-  };
+  }
 
   // Inline styles for a sleek, modern look
   const containerStyle = {
@@ -46,8 +90,8 @@ export default function LoginPage() {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    margin: 0
-  };
+    margin: 0,
+  }
 
   const formStyle = {
     background: "#fff",
@@ -55,8 +99,8 @@ export default function LoginPage() {
     borderRadius: "12px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
     textAlign: "center",
-    width: "350px"
-  };
+    width: "350px",
+  }
 
   const buttonStyle = {
     width: "100%",
@@ -67,24 +111,41 @@ export default function LoginPage() {
     fontSize: "18px",
     borderRadius: "6px",
     cursor: "pointer",
-    transition: "background-color 0.3s"
-  };
+    transition: "background-color 0.3s",
+  }
+
+  const secondaryButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "#28a745",
+    marginTop: "15px",
+  }
+
+  const disabledButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "#cccccc",
+    cursor: "not-allowed",
+  }
+
+  const successStyle = {
+    color: "#28a745",
+    fontWeight: "bold",
+    marginTop: "15px",
+  }
 
   const promptStyle = {
     marginTop: "20px",
     padding: "15px",
     background: "#fff3cd",
     color: "#856404",
-    borderRadius: "8px"
-  };
+    borderRadius: "8px",
+  }
 
   return (
     <div style={containerStyle}>
       <div style={formStyle}>
         <h2 style={{ color: "#333", marginBottom: "15px" }}>Login to Voxa</h2>
-        {user ? (
-          <p style={{ marginBottom: "20px" }}>Welcome, {user.displayName}!</p>
-        ) : (
+
+        {!user ? (
           <button
             onClick={handleGoogleLogin}
             style={buttonStyle}
@@ -93,6 +154,24 @@ export default function LoginPage() {
           >
             Sign in with Google
           </button>
+        ) : (
+          <>
+            <p style={{ marginBottom: "20px" }}>Welcome, {user.displayName}!</p>
+
+            {!gmailConnected ? (
+              <button
+                onClick={handleConnectGmail}
+                style={isConnectingGmail ? disabledButtonStyle : secondaryButtonStyle}
+                onMouseOver={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#218838") : undefined}
+                onMouseOut={!isConnectingGmail ? (e) => (e.target.style.backgroundColor = "#28a745") : undefined}
+                disabled={isConnectingGmail}
+              >
+                {isConnectingGmail ? "Connecting..." : "Connect Gmail Account"}
+              </button>
+            ) : (
+              <p style={successStyle}>✓ Gmail Connected Successfully</p>
+            )}
+          </>
         )}
 
         {extensionMissing && (
@@ -111,5 +190,6 @@ export default function LoginPage() {
         )}
       </div>
     </div>
-  );
+  )
 }
+
